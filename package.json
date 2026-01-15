@@ -1,0 +1,27 @@
+{
+  "name": "uniappx-tui",
+  "version": "1.0.0",
+  "type": "module",
+  "bin": {
+    "uniappx-tui": "./dist/cli.js"
+  },
+  "scripts": {
+    "dev": "tsx src/cli.tsx",
+    "build": "tsc",
+    "start": "node dist/cli.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "handlebars": "^4.7.8",
+    "ink": "^4.4.1",
+    "ink-select-input": "^5.0.0",
+    "ink-text-input": "^5.0.1",
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@types/react": "^18.2.45",
+    "tsx": "^4.6.2",
+    "typescript": "^5.3.3"
+  }
+}

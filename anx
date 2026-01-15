@@ -1,0 +1,8 @@
+#!/bin/bash
+# anx - UniApp X Android 离线打包脚手架
+
+# 获取当前工作目录
+CURRENT_DIR=$(pwd)
+
+# 进入项目目录并传递当前目录作为输出目录
+(cd ~/Documents/tui/uniappx-tui && OUTPUT_DIR="$CURRENT_DIR" pnpm dev)
