@@ -5,6 +5,7 @@ export interface EnvConfig {
   PROJECT_NAME: string;
   PACKAGE_NAME: string;
   APP_ID: string;
+  PROJECT_PATH: string;  // UniApp X 项目路径
   SDK_PATH: string;
   PLUGINS_PATH: string;
   GRADLE_VERSION: string;
@@ -21,6 +22,7 @@ export const DEFAULT_CONFIG: EnvConfig = {
   PROJECT_NAME: 'MyUniAppX',
   PACKAGE_NAME: 'com.example.uniappx',
   APP_ID: '__UNI__XXXXXXX',
+  PROJECT_PATH: '',  // UniApp X 项目路径
   SDK_PATH: '',
   PLUGINS_PATH: '',
   GRADLE_VERSION: '8.4',
@@ -78,6 +80,7 @@ export function saveEnvConfig(filePath: string, config: EnvConfig): void {
     `PROJECT_NAME="${config.PROJECT_NAME}"`,
     `PACKAGE_NAME="${config.PACKAGE_NAME}"`,
     `APP_ID="${config.APP_ID}"`,
+    `PROJECT_PATH="${config.PROJECT_PATH}"`,
     '',
     '# SDK 路径',
     `SDK_PATH="${config.SDK_PATH}"`,

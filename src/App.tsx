@@ -17,6 +17,7 @@ interface AppProps {
   outputDir?: string;
 }
 
+// 流程: config -> modules (可选广告等模块) -> generate
 type Screen = 'config' | 'modules' | 'generate';
 
 export function App({ outputDir }: AppProps = {}) {
@@ -33,7 +34,7 @@ export function App({ outputDir }: AppProps = {}) {
     // 加载现有配置
     const loadedConfig = loadEnvConfig(envFile);
     
-    // 设置默认路径
+    // 自动设置 SDK 和插件路径 (用户不需要手动配置)
     if (!loadedConfig.SDK_PATH) {
       loadedConfig.SDK_PATH = getDefaultSdkPath();
     }

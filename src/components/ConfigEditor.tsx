@@ -10,19 +10,18 @@ interface ConfigEditorProps {
 
 type ConfigKey = keyof Omit<EnvConfig, 'SELECTED_MODULES'>;
 
+// 只显示用户需要配置的核心字段
 const CONFIG_FIELDS: { key: ConfigKey; label: string; description: string }[] = [
   { key: 'PROJECT_NAME', label: '项目名称', description: '生成的 Android 项目名称' },
-  { key: 'PACKAGE_NAME', label: '包名', description: 'Android 应用包名' },
-  { key: 'APP_ID', label: 'AppID', description: 'DCloud AppID (如 __UNI__XXXXXXX)' },
-  { key: 'SDK_PATH', label: 'SDK路径', description: 'UniApp X SDK libs 目录路径' },
-  { key: 'PLUGINS_PATH', label: '插件路径', description: 'Gradle 插件目录路径' },
-  { key: 'COMPILE_SDK', label: '编译SDK', description: 'compileSdk 版本' },
-  { key: 'MIN_SDK', label: '最小SDK', description: 'minSdk 版本' },
-  { key: 'TARGET_SDK', label: '目标SDK', description: 'targetSdk 版本' },
-  { key: 'BUILD_TOOLS', label: '构建工具', description: 'Build Tools 版本' },
-  { key: 'KOTLIN_VERSION', label: 'Kotlin版本', description: 'Kotlin 插件版本' },
-  { key: 'AGP_VERSION', label: 'AGP版本', description: 'Android Gradle Plugin 版本' },
+  { key: 'PACKAGE_NAME', label: '包名', description: 'Android 应用包名 (如 com.example.app)' },
+  { key: 'APP_ID', label: 'AppID', description: 'DCloud AppID (如 __UNI__5067A0E)' },
+  { key: 'PROJECT_PATH', label: 'UniApp项目', description: 'UniApp X 项目路径 (用于自动复制资源和检测模块)' },
 ];
+
+// 这些字段是自动检测或固定的，不需要用户编辑
+// SDK_PATH, PLUGINS_PATH - 自动从 resources 目录检测
+// COMPILE_SDK, MIN_SDK, TARGET_SDK, BUILD_TOOLS - 使用固定推荐值
+// KOTLIN_VERSION, AGP_VERSION, GRADLE_VERSION - 使用固定推荐值
 
 export function ConfigEditor({ config, onUpdate, onComplete }: ConfigEditorProps) {
   const [selectedIndex, setSelectedIndex] = useState(0);

@@ -1,6 +1,14 @@
 import React, { useState } from 'react';
 import { Box, Text, useInput, useApp } from 'ink';
-import { OPTIONAL_MODULES, type SdkModule } from '../data/sdk-modules.js';
+// @ts-ignore
+import { OPTIONAL_MODULES } from '../data/sdk-modules.js';
+
+interface SdkModule {
+  name: string;
+  displayName: string;
+  description: string;
+  files: string[];
+}
 
 interface SdkSelectorProps {
   selectedModules: string[];
@@ -15,7 +23,7 @@ export function SdkSelector({ selectedModules, onUpdate, onComplete, onBack }: S
   const { exit } = useApp();
 
   const VISIBLE_ROWS = 15;
-  const modules = OPTIONAL_MODULES;
+  const modules: SdkModule[] = OPTIONAL_MODULES;
 
   // 确保选中项在可见范围内
   const adjustScroll = (newIndex: number) => {
@@ -72,9 +80,12 @@ export function SdkSelector({ selectedModules, onUpdate, onComplete, onBack }: S
 
   return (
     <Box flexDirection="column" padding={1}>
-      <Box marginBottom={1}>
-        <Text bold color="cyan">📦 选择 SDK 模块</Text>
-        <Text dimColor> ({selectedModules.length}/{modules.length} 已选)</Text>
+      <Box marginBottom={1} flexDirection="column">
+        <Box>
+          <Text bold color="cyan">📦 选择额外 SDK 模块</Text>
+          <Text dimColor> ({selectedModules.length}/{modules.length} 已选)</Text>
+        </Box>
+        <Text dimColor>💡 核心功能模块会从 manifest.json 自动检测，这里选择广告等额外模块</Text>
       </Box>
 
       <Box marginBottom={1}>
