@@ -410,7 +410,7 @@ d975f751698a77b662f1254ddbeed3901e976f5a`;
       // gradle-wrapper.properties
       const wrapperProperties = `distributionBase=GRADLE_USER_HOME
 distributionPath=wrapper/dists
-distributionUrl=https\\://services.gradle.org/distributions/gradle-8.4-bin.zip
+distributionUrl=https\\://services.gradle.org/distributions/gradle-${config.GRADLE_VERSION}-bin.zip
 networkTimeout=10000
 validateDistributionUrl=true
 zipStoreBase=GRADLE_USER_HOME
@@ -428,10 +428,10 @@ zipStorePath=wrapper/dists
 APP_HOME="\$(cd "\$(dirname "$0")" && pwd -P)"
 
 # Use local gradle if available
-if [ -x "$APP_HOME/resources/gradle-8.4/bin/gradle" ]; then
-    exec "$APP_HOME/resources/gradle-8.4/bin/gradle" "$@"
+if [ -x "$APP_HOME/resources/gradle-${config.GRADLE_VERSION}/bin/gradle" ]; then
+    exec "$APP_HOME/resources/gradle-${config.GRADLE_VERSION}/bin/gradle" "$@"
 else
-    echo "Error: Gradle not found. Please ensure resources/gradle-8.4 exists."
+    echo "Error: Gradle not found. Please ensure resources/gradle-${config.GRADLE_VERSION} exists."
     exit 1
 fi
 `;
@@ -445,10 +445,10 @@ setlocal
 
 set APP_HOME=%~dp0
 
-if exist "%APP_HOME%resources\\gradle-8.4\\bin\\gradle.bat" (
-    call "%APP_HOME%resources\\gradle-8.4\\bin\\gradle.bat" %*
+if exist "%APP_HOME%resources\\gradle-${config.GRADLE_VERSION}\\bin\\gradle.bat" (
+    call "%APP_HOME%resources\\gradle-${config.GRADLE_VERSION}\\bin\\gradle.bat" %*
 ) else (
-    echo Error: Gradle not found. Please ensure resources\\gradle-8.4 exists.
+    echo Error: Gradle not found. Please ensure resources\\gradle-${config.GRADLE_VERSION} exists.
     exit /b 1
 )
 
@@ -459,7 +459,7 @@ endlocal
 
       // 设置 Gradle 可执行权限
       addLog('🔧 设置 Gradle 可执行权限');
-      const gradleBin = path.join(projectPath, 'resources', 'gradle-8.4', 'bin', 'gradle');
+      const gradleBin = path.join(projectPath, 'resources', `gradle-${config.GRADLE_VERSION}`, 'bin', 'gradle');
       if (fs.existsSync(gradleBin)) {
         fs.chmodSync(gradleBin, 0o755);
         addLog('✓ Gradle 可执行权限已设置');
@@ -671,6 +671,7 @@ function generateUniappxBuildGradle(config: EnvConfig): string {
   return `plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'io.dcloud.uts.kotlin'  // UTS Kotlin 插件，必须包含以支持 UTS 语法
 }
 
 android {

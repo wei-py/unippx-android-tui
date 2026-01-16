@@ -20,7 +20,7 @@ export const SdkModule = {};
  */
 export const BASE_MODULES = [
   'uts-runtime-release.aar',
-  'android-gif-drawable-1.2.28.aar',
+  'android-gif-drawable-1.2.29.aar',  // 正式版 SDK 4.87 使用 1.2.29
   'app-common-release.aar',
   'app-runtime-release.aar',
   'breakpad-build-release.aar',

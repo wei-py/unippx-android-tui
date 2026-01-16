@@ -30,7 +30,7 @@ export const DEFAULT_CONFIG: EnvConfig = {
   MIN_SDK: '21',
   TARGET_SDK: '34',
   BUILD_TOOLS: '35.0.0',
-  KOTLIN_VERSION: '1.9.10',
+  KOTLIN_VERSION: '2.2.0',  // SDK 4.87 实际使用 Kotlin 2.2.0
   AGP_VERSION: '8.2.2',
   SELECTED_MODULES: [],
 };
